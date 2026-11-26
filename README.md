@@ -16,8 +16,8 @@ GitHub 仓库 Settings → Pages → Deploy from a branch → `main` → `/(root
 
 ## CI/CD note
 我们检查了开启 GitHub Pages 时自动触发的首次部署工作流。
-本次部署由 push 到 main 分支自动触发，无需手动干预。在 Actions 页面中，可以看到工作流按顺序执行了 Checkout（拉取代码）、Setup Pages（配置环境）和 Deploy to GitHub Pages（发布）等步骤，最终执行成功（显示绿色对勾）。
-你可以这样写：在整个部署流程中，没有任何自动化测试、代码规范检查或语法检查。只要代码推送到仓库，GitHub 就会直接将其作为静态文件发布
+本次部署由 push 到 main 分支自动触发，无需手动干预。在 Actions 页面中，可以看到工作流按顺序执行了 Checkout（拉取代码）、Setup Pages（配置环境）和 Deploy to GitHub Pages（发布）等步骤，最终执行成功（显示绿色对勾）。如果不想折腾环境变量，可以试试用 Python 自带的 HTTP 服务器（前提是电脑装了 Python）。在项目目录下运行 python -m http.server 5173，也能达到临时预览的效果。
+在整个部署流程中，没有任何自动化测试、代码规范检查或语法检查。只要代码推送到仓库，GitHub 就会直接将其作为静态文件发布
 
 ## 已知限制与素材
 
