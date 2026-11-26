@@ -35,7 +35,34 @@ GitHub Pages 发布完成后填写：https://everay666.github.io/vibecoding_FIA/
 
 ## 本地运行
 
-通过 HTTP 服务器打开根目录 `index.html`（不要直接双击）。Three.js 使用 jsDelivr CDN，需联网。若在本目录本机已有 Node.js 与 pnpm：`pnpm install --frozen-lockfile`，然后 `pnpm start`，访问 `http://localhost:5173/`。
+通过 HTTP 服务器打开根目录 `index.html`，不要直接双击使用 `file://`。需要支持 WebGL 和 import map 的现代浏览器，并能联网访问 jsDelivr 上的 Three.js 0.170.0。
+
+当前仓库没有 `package.json` 或 `pnpm-lock.yaml`，因此不能在此版本直接执行 `pnpm install --frozen-lockfile` / `pnpm start`。如果已安装 Python 3，可在仓库根目录运行：
+
+```sh
+python3 -m http.server 5173 --bind 127.0.0.1
+```
+
+Windows 也可使用 `py -3 -m http.server 5173 --bind 127.0.0.1`。打开 <http://127.0.0.1:5173/>，结束时在终端按 Ctrl+C。服务器启动只表示静态文件可访问，不代表游戏能正常运行；还需检查下面的资源路径问题。
+
+### 素材路径与启动排障
+
+当前版本存在以下目录／引用不一致，需由团队修复后再验证可游玩性：
+
+| 代码请求的路径 | 当前仓库中的文件位置 |
+| --- | --- |
+| `src/main.js`（`index.html` 的模块入口） | 根目录 `main.js` |
+| `assets/explorer.glb`（`player.js`） | 根目录 `explorer.glb` |
+| `assets/ruins-environment.glb`（`scene.js`） | 根目录 `ruins-environment.glb` |
+| `assets/ruins-treasure-colliders.glb`（`scene.js`） | 根目录 `ruins-treasure-colliders.glb` |
+| `assets/level-manifest.json`（`asset-level.js`） | 根目录 `level-manifest.json` |
+
+排查顺序：
+
+1. 打开浏览器开发者工具的 Network 和 Console，刷新页面；先检查入口模块是否返回 404，再检查 GLB／JSON 请求。入口未加载时，后续素材请求可能尚未发出。
+2. 若目录结构保持现状，应由团队统一调整引用；若恢复 `src/` 和 `assets/`，则应保留模块之间的相对导入关系并上传全部必要文件。不要只改入口后就认定所有资源已经修复。
+3. 若 jsDelivr 请求失败，先确认网络可访问 `index.html` 中的 CDN 地址；本仓库目前不是完整离线包。
+4. 资源请求通过后，仍需人工检查开始、移动、收集、重新开始及声音／静音；本节不作为任何成员已完成这些检查的证明。
 
 ## 发布
 
