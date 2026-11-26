@@ -1,4 +1,4 @@
-// Source: assets/level-manifest.json (original Three.js Y-up meters, no rescaling).
+// Source: ./level-manifest.json (original Three.js Y-up meters, no rescaling).
 // The single-file packer may replace this null with the original JSON object.
 export const EMBEDDED_LEVEL_MANIFEST = null;
 
@@ -23,7 +23,7 @@ export const ASSET_LEVEL = {
 
 export async function loadAssetLevel() {
   if (EMBEDDED_LEVEL_MANIFEST) return EMBEDDED_LEVEL_MANIFEST;
-  const response = await fetch(new URL('assets/level-manifest.json', document.baseURI));
-  if (!response.ok) throw new Error(`关卡清单加载失败 (${response.status}): assets/level-manifest.json`);
+  const response = await fetch(new URL('./level-manifest.json', document.baseURI));
+  if (!response.ok) throw new Error(`关卡清单加载失败 (${response.status}): ./level-manifest.json`);
   return response.json();
 }

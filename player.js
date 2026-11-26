@@ -43,7 +43,7 @@ export function createPlayer({ scene, spawn }) {
   let yaw = 0, velY = 0, grounded = true, speed = 0;
   let action = ACTION.IDLE, forced = null, animTime = 0, stride = 0, landTimer = 0;
   let disposed = false, model = null, joints = {};
-  const ready = loadModel('assets/explorer.glb').then(gltf => {
+  const ready = loadModel('./explorer.glb').then(gltf => {
     if (disposed) { disposeModel(gltf.scene); return; }
     model = gltf.scene;
     visual.add(model);

@@ -49,7 +49,7 @@
     <button id="pause-button">暂停</button>
   </div>
 
-  <!-- import map：让浏览器用 ES Module 解析 'three' 到本地 node_modules（不依赖 CDN） -->
+  <!-- import map：让浏览器从 jsDelivr CDN 加载 Three.js ES Module（需要联网） -->
   <script type="importmap">
   {
     "imports": {
@@ -58,6 +58,6 @@
     }
   }
   </script>
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

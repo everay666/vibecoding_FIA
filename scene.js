@@ -89,8 +89,8 @@ export function createEnvironment(container) {
 
   const ready = Promise.all([
     loadAssetLevel(),
-    loadModel('assets/ruins-environment.glb'),
-    loadModel('assets/ruins-treasure-colliders.glb'),
+    loadModel('./ruins-environment.glb'),
+    loadModel('./ruins-treasure-colliders.glb'),
   ]).then(([manifest, environment, proxies]) => {
     if (disposed) throw new Error('环境在资源加载完成前已被销毁');
     for (const key of ['colliders', 'floor_tiles', 'stairs', 'mesh_colliders', 'treasures']) {
